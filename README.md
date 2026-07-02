@@ -147,10 +147,3 @@ The compiled graph is a singleton bean with a built-in in-memory checkpoint stor
 `threadId`, so the paused state survives between the two calls. (Paused tickets are lost on
 restart — acceptable for a learning project; a persistent saver would fix that.)
 
-## Notes
-
-- **Plain `ChatClient`, no chat-memory advisor** — the graph's own state carries context
-  between nodes, which also avoids the Spring AI 2.0 `conversationId cannot be null` trap.
-- **Minimal error handling** — inline `ResponseStatusException` returns `400` (bad category),
-  `404` (unknown ticket), `409` (ticket not awaiting classification). No advice class.
-- **Recipes used OpenAI**; this project swaps in `spring-ai-starter-model-anthropic`.
